@@ -13,6 +13,7 @@ namespace Sample_1
 {
     class SimpleWindow : GameWindow 
     {
+
         // Constructor.
         public SimpleWindow() : base(800, 600)
         {
@@ -21,6 +22,8 @@ namespace Sample_1
 
         // Tratează evenimentul generat de apăsarea unei taste. Mecanismul standard oferit de .NET
         // este cel utilizat.
+
+        //Laborator 3. ex 8. la apasearea unei taste se modifica culoarea
         void Keyboard_KeyDown(object sender, KeyboardKeyEventArgs e)
         {
             if (e.Key == Key.Escape)
@@ -31,6 +34,50 @@ namespace Sample_1
                     this.WindowState = WindowState.Normal;
                 else
                     this.WindowState = WindowState.Fullscreen;
+
+            if (e.Key == Key.A)
+            {
+                GL.Begin(PrimitiveType.Triangles);
+                GL.Color3(Color.Blue);
+                GL.Vertex2(-1.0f, 1.0f);
+                GL.Color3(Color.Blue);
+                GL.Vertex2(0.0f, -1.0f);
+                GL.Color3(Color.Blue);
+                GL.Vertex2(1.0f, 1.0f);
+                GL.End();
+
+                this.SwapBuffers();
+            }
+
+            if (e.Key == Key.S)
+            {
+                GL.Begin(PrimitiveType.Triangles);
+                GL.Color3(Color.Red);
+                GL.Vertex2(-1.0f, 1.0f);
+                GL.Color3(Color.Red);
+                GL.Vertex2(0.0f, -1.0f);
+                GL.Color3(Color.Red);
+                GL.Vertex2(1.0f, 1.0f);
+                GL.End();
+
+                this.SwapBuffers();
+            }
+
+            if (e.Key == Key.D)
+            {
+                GL.Begin(PrimitiveType.Triangles);
+                GL.Color3(Color.Gray);
+                GL.Vertex2(-1.0f, 1.0f);
+                GL.Color3(Color.Gray);
+                GL.Vertex2(0.0f, -1.0f);
+                GL.Color3(Color.Gray);
+                GL.Vertex2(1.0f, 1.0f);
+                GL.End();
+
+                this.SwapBuffers();
+            }
+
+
         }
 
         // Setare mediu OpenGL și încarcarea resurselor (dacă e necesar) - de exemplu culoarea de
