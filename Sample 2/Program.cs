@@ -89,6 +89,8 @@ namespace Sample_2
                     showCube = true;
                 }
             }
+
+           
         }
 
         /** Secțiunea pentru randarea scenei 3D. Controlată de modulul logic din metoda ONUPDATEFRAME().

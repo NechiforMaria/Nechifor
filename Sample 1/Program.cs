@@ -8,12 +8,15 @@ using OpenTK;
 using OpenTK.Graphics.OpenGL;
 using OpenTK.Input;
 using OpenTK.Platform;
+using OpenTK.Graphics;
 
 namespace Sample_1
 {
     class SimpleWindow : GameWindow 
     {
-
+        private readonly Randomizer random;
+        KeyboardState lastKeyPress;
+        int c = 0;
         // Constructor.
         public SimpleWindow() : base(800, 600)
         {
@@ -26,6 +29,7 @@ namespace Sample_1
         //Laborator 3. ex 8. la apasearea unei taste se modifica culoarea
         void Keyboard_KeyDown(object sender, KeyboardKeyEventArgs e)
         {
+            KeyboardState keyboard = Keyboard.GetState();
             if (e.Key == Key.Escape)
                 this.Exit();
 
@@ -76,9 +80,25 @@ namespace Sample_1
 
                 this.SwapBuffers();
             }
+            if (keyboard[Key.Up])
+            {
+                if (c < 255)
+                    c++;
+                Console.Write("\rCub \t r =" + c.ToString() + " g = " + c.ToString() + " b = " + c.ToString());
+            }
+            if (keyboard[Key.Down])
+            {
+                if (c > 0)
+                    c--;
+                Console.Write("\rCub \t r =" + c.ToString() + " g = " + c.ToString() + " b = " + c.ToString());
+            }
+            
+            lastKeyPress = keyboard;
+
 
 
         }
+
 
         // Setare mediu OpenGL și încarcarea resurselor (dacă e necesar) - de exemplu culoarea de
         // fundal a ferestrei 3D.
@@ -112,6 +132,7 @@ namespace Sample_1
         // Parametrul de intrare "e" conține informatii de timing pentru randare.
         protected override void OnRenderFrame(FrameEventArgs e)
         {
+            KeyboardState keyboard = Keyboard.GetState();
             GL.Clear(ClearBufferMask.ColorBufferBit);
 
             // Modul imediat! Suportat până la OpenGL 3.5 (este ineficient din cauza multiplelor apeluri de
@@ -129,6 +150,7 @@ namespace Sample_1
             // Sfârșitul modului imediat!
 
             this.SwapBuffers();
+            
         }
 
         [STAThread]
